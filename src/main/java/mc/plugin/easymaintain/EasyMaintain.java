@@ -3,6 +3,7 @@
 package mc.plugin.easymaintain;
 
 import mc.plugin.easymaintain.util.Config;
+import mc.plugin.easymaintain.util.Initiator;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,6 +20,7 @@ public final class EasyMaintain extends JavaPlugin {
         configFile = new Config();
         chatPrefix = configFile.getPluginChatPrefix();
         underMaintenance = configFile.getUnderMaintenance();
+        Initiator.initiate();
     }
 
     @Override
