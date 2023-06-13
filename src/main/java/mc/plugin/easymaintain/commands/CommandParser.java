@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
+
 public class CommandParser implements CommandExecutor {
     private String helpText = EasyMaintain.chatPrefix + "Here's a list of all available commands:\n" +
             "/em start - Start maintenance\n" +
@@ -52,6 +54,14 @@ public class CommandParser implements CommandExecutor {
                 } else {
                     commandSender.sendMessage(EasyMaintain.chatPrefix + "Keep in mind, that this will delete all allowed players.\n" +
                             "Please enter \"/em resetallowed confirm\" to confirm. ");
+                }
+            }
+
+            case "showallowed" -> {
+                commandSender.sendMessage(EasyMaintain.chatPrefix + "Here is a list of all added players:");
+
+                for(String uuid : EasyMaintain.getInstance().getConfigFile().getAllowedUUIDs()) {
+                    commandSender.sendMessage(Bukkit.getPlayer(UUID.fromString(uuid)).getName());
                 }
             }
 
