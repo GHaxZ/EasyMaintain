@@ -9,7 +9,6 @@ public class ServerManager {
     }
 
     public static void disableMaintenance() {
-        EasyMaintain.getInstance().setUnderMaintenance(true);
-        PlayerManager.kickAllNotAllowedPlayers();
+        EasyMaintain.getInstance().setUnderMaintenance(false);
     }
 }

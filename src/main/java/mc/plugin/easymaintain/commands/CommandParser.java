@@ -29,7 +29,7 @@ public class CommandParser implements CommandExecutor {
             case "start" -> {
                 if(!EasyMaintain.getInstance().isUnderMaintenance()) {
                     ServerManager.enableMaintenance();
-                    commandSender.sendMessage(EasyMaintain.chatPrefix + "The server is now under maintenance.");
+                    Bukkit.broadcastMessage(EasyMaintain.chatPrefix + "The server is now under maintenance.");
                 } else {
                     commandSender.sendMessage(EasyMaintain.chatPrefix + "The server is already under maintenance.");
                 }
@@ -37,8 +37,8 @@ public class CommandParser implements CommandExecutor {
 
             case "stop" -> {
                 if(EasyMaintain.getInstance().isUnderMaintenance()) {
-                    ServerManager.enableMaintenance();
-                    commandSender.sendMessage(EasyMaintain.chatPrefix + "The server is now no longer under maintenance.");
+                    ServerManager.disableMaintenance();
+                    Bukkit.broadcastMessage(EasyMaintain.chatPrefix + "The server is now no longer under maintenance.");
                 } else {
                     commandSender.sendMessage(EasyMaintain.chatPrefix + "The server is currently not under maintenance.");
                 }
@@ -48,7 +48,7 @@ public class CommandParser implements CommandExecutor {
                 if(args.length > 1 && args[1].equalsIgnoreCase("confirm")) {
                     EasyMaintain.getInstance().getConfigFile().resetAllowedUUIDs();
                     commandSender.sendMessage(EasyMaintain.chatPrefix + "All players were removed from the allowed list.");
-                    PlayerManager.kickAllNotAllowedPlayers();
+                    Bukkit.getLogger().info(EasyMaintain.chatPrefix + "All players were removed from the allowed list.");
                 } else {
                     commandSender.sendMessage(EasyMaintain.chatPrefix + "Keep in mind, that this will delete all allowed players.\n" +
                             "Please enter \"/em resetallowed confirm\" to confirm. ");
@@ -78,7 +78,6 @@ public class CommandParser implements CommandExecutor {
                             EasyMaintain.getInstance().getConfigFile().getAllowedUUIDs().contains(Bukkit.getPlayerUniqueId(args[1]).toString())) {
                         EasyMaintain.getInstance().getConfigFile().removeAllowedUUID(args[1]);
                         commandSender.sendMessage(EasyMaintain.chatPrefix + "The player \"" + args[1] + "\" was successfully removed from the allowed list.");
-                        PlayerManager.kickAllNotAllowedPlayers();
                     } else {
                         commandSender.sendMessage(EasyMaintain.chatPrefix + "The player \"" + args[1] + "\" wasn't found in the allowed list.");
                     }

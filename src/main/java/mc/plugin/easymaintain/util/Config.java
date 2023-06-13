@@ -21,23 +21,27 @@ public class Config {
 
     private void createConfig() {
         plugin.getConfig().options().copyDefaults();
-        plugin.saveDefaultConfig();
+        plugin.saveConfig();
     }
 
     // true if successful, false if not
-    public void addAllowedUUID(String playername) {
-        allowedUUIDs.add(Bukkit.getPlayerUniqueId(playername).toString());
+    public void addAllowedUUID(String uuid) {
+        allowedUUIDs.add(uuid);
         plugin.getConfig().set("allowed-uuids", allowedUUIDs);
+        plugin.saveConfig();
     }
 
-    public void removeAllowedUUID(String playername) {
-        allowedUUIDs.remove(playername);
-        plugin.getConfig().set("allowed-uuids", allowedUUIDs);
+    public void removeAllowedUUID(String uuid) {
+        allowedUUIDs.remove(uuid);
+        plugin.saveConfig();
+        PlayerManager.kickAllNotAllowedPlayers();
     }
 
     public void resetAllowedUUIDs() {
         allowedUUIDs.clear();
         plugin.getConfig().set("allowed-uuids", allowedUUIDs);
+        plugin.saveConfig();
+        PlayerManager.kickAllNotAllowedPlayers();
     }
 
     public List<String> getAllowedUUIDs() {

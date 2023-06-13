@@ -26,6 +26,7 @@ public final class EasyMaintain extends JavaPlugin {
     @Override
     public void onDisable() {
         getConfig().set("under-maintenance", underMaintenance);
+        saveConfig();
     }
 
     public static EasyMaintain getInstance() {
