@@ -1,0 +1,15 @@
+under-maintenance: false
+
+#plugin settings
+plugin-settings:
+  #Preifx shown in chat before message content (keep space in mind)
+  plugin-chat-prefix: "[EasyMaintain] "
+  #message displayed in server list
+  motd-message: "Server currently in maintenance"
+  #displayed message when online players get kicked for maintenance
+  kick-message: "The server went under maintenance."
+  #displayed message when players try to connect in maintenance
+  join-message: "The server is currently undergoing maintenance."
+
+#stores allowed players during maintenance
+allowed-uuids:
