@@ -76,7 +76,7 @@ public class CommandParser implements CommandExecutor {
                 if(args.length > 1) {
                     if(Bukkit.getPlayerUniqueId(args[1]) != null &&
                             EasyMaintain.getInstance().getConfigFile().getAllowedUUIDs().contains(Bukkit.getPlayerUniqueId(args[1]).toString())) {
-                        EasyMaintain.getInstance().getConfigFile().removeAllowedUUID(args[1]);
+                        EasyMaintain.getInstance().getConfigFile().removeAllowedUUID(Bukkit.getPlayerUniqueId(args[1]).toString());
                         commandSender.sendMessage(EasyMaintain.chatPrefix + "The player \"" + args[1] + "\" was successfully removed from the allowed list.");
                     } else {
                         commandSender.sendMessage(EasyMaintain.chatPrefix + "The player \"" + args[1] + "\" wasn't found in the allowed list.");
