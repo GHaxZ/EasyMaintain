@@ -1,0 +1,4 @@
+name: EasyMaintain
+version: '${project.version}'
+main: mc.plugin.easymaintain.EasyMaintain
+api-version: 1.20
